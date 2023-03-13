@@ -61,6 +61,7 @@ public class Main{
             int j=0;
             for (int i=0;i<partes2.length/2;i++) {
         		pro[i]=new Pronosticos(partes2[j],partes2[j+1]);
+        		j+=2;
 //            	pro[i].setPartido(partes2[i]);
 //            	pro[i+1].setResultadoPronostico(partes2[i+1]);
             }
