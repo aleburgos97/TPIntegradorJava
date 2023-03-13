@@ -9,6 +9,9 @@ public class Main{
     public static void main(String[] args) {
         String rutaArchivo = "/home/bigmati/Documentos/GitHub/tpintegrador/Resultados.txt";
         String rutaPronosticos = "/home/bigmati/Documentos/GitHub/tpintegrador/Pronosticos.txt";
+        Pronosticos [] pro = new Pronosticos[15];
+        Resultados [] res = new Resultados[15];
+        
         String equipo1 = "";
         String equipo2 = "";
         String resultado = "";
@@ -31,6 +34,12 @@ public class Main{
 //                resultado = partes[2];
             }
             scanner.close();
+            //Carga de resultados al vector res
+            int j=0;
+            for (int i=0;i<partes.length/3;i++) {
+        		res[i]= new Resultados (partes[j],partes[j+1],partes[j+2]);
+        		j+=3;
+            }
         } catch (IOException e) {
             System.out.println("Error al leer el archivo.");
             e.printStackTrace();
@@ -45,30 +54,48 @@ public class Main{
 //                resulPronostico = partes2[1];
 //                if (resulPronostico.equals(resultado))
 //                    puntaje++;
+                
             }
             scanner.close();
+            //Carga de partidos al vector de Pronosticos
+            int j=0;
+            for (int i=0;i<partes2.length/2;i++) {
+        		pro[i]=new Pronosticos(partes2[j],partes2[j+1]);
+//            	pro[i].setPartido(partes2[i]);
+//            	pro[i+1].setResultadoPronostico(partes2[i+1]);
+            }
         } catch (IOException e) {
             System.out.println("Error al leer el archivo de pronósticos.");
             e.printStackTrace();
         }
+        
         //Comparación de resultados/pronosticos
         //Formato partes= equipo1,equipo2,resultado
         //Formato partes2= numeroPartido, resultado
-        for (int i=0;i<partes.length;i+=3) {
-        	equipo1 = partes[i];
-            equipo2 = partes[i+1];
-            resultado = partes[i+2];
-        	for (int j=0;j<partes2.length;j+=2) {
-        		partido = partes2[j];
-                resulPronostico = partes2[j+1];
-                if (resulPronostico.equals(resultado))
-                    puntaje++;
-        	}
+        for (int i=0;i<pro.length;i++) {
+    		if(pro[i]!=null) {
+	        	if(pro[i].resultadoPronostico().equals(res[i].getResultado()))
+				puntaje++;
+	    		System.out.println("El resultado del partido nro "+pro[i].getPartido()+" entre " + res[i].getEquipo1() + " y " + res[i].getEquipo2() + " fue " + res[i].getResultado());
+	    		System.out.println("El puntaje del usuario es " +puntaje+" ya que su apuesta habia sido "+pro[i].resultadoPronostico());
+    		}
+//        	equipo1 = partes[i];
+//          equipo2 = partes[i+1];
+//          resultado = partes[i+2];
+//        	for (int j=0;j<partes2.length;j++) {
+//        		
+////        		partido = partes2[j];
+////              resulPronostico = partes2[j+1];
+////              if (resulPronostico.equals(resultado))
+////                  puntaje++;
+//        		if(pro[i].resultadoPronostico().equals(res[j].getResultado()))
+//        			puntaje++;
+//        	}
         }
         // Imprimir el resultado del partido
-        System.out.println("El resultado del partido nro "+ partido+" entre " + equipo1 + " y " + equipo2 + " fue " + resultado);
+//        System.out.println("El resultado del partido nro "+partido+" entre " + equipo1 + " y " + equipo2 + " fue " + resultado);
         // Imprimir el puntaje del usuario
-        System.out.println("El puntaje del usuario es " + puntaje+" ya que su apuesta habia sido "+resulPronostico);
+//        System.out.println("El puntaje del usuario es " + puntaje+" ya que su apuesta habia sido "+resulPronostico);
     }
 
 
