@@ -1,0 +1,4 @@
+1;Equipo 1
+2;Equipo 2
+3;Equipo 3
+4;Equipo 4
