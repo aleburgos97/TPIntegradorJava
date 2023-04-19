@@ -19,7 +19,7 @@ public class Menu {
 		
 		int opcion = 0;
 		boolean pronosticosCargados = false;
-		while(opcion != 4) {
+		while(opcion != 5) {
 		    System.out.println("Menú:");
 		    System.out.println("1. Agregar participante");
 		    System.out.println("2. Cargar pronósticos");
@@ -92,6 +92,21 @@ public class Menu {
 		    				System.out.println(idParticipante+"  -  "+participante+"  -  "+apuestas+"  -  puntaje total: "+puntaje);
 		    			}
 		    		} catch (SQLException e) {
+		    		}
+		    		finally {
+		    			try {
+							if(rs!=null) {
+								rs.close();
+							}
+							if(stm!=null) {
+								stm.close();
+							}
+							if(cn!=null) {
+								cn.close();
+							}
+						} catch (Exception e2) {
+
+						}
 		    		}
 		        	System.out.println("                ");
 		            System.out.println("                ");
