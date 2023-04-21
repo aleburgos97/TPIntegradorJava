@@ -1,7 +1,5 @@
 package tp;
-/*
- * Separar partes en mas cosas
- * */
+
 //Resultados de los partidos
 public class Partido {
 	private String equipo1;

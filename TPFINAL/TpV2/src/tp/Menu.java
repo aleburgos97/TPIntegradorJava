@@ -14,6 +14,7 @@ public class Menu {
 		/*
 		pronos.agregarParticipante("Daniel", "C:\\Users\\Ale\\Desktop\\TPIntegradoJava\\TPIntegradorJava VFinal\\V1.2\\Alternativa\\ApuestasDaniel");
 		pronos.agregarParticipante("Eduardo", "C:\\Users\\Ale\\Desktop\\TPIntegradoJava\\TPIntegradorJava VFinal\\V1.2\\Alternativa\\ApuestasEduardo");
+		C:\Users\Ale\Desktop\TPIntegradoJava\TPFINAL\\ApuestasJavier.txt
 		pronos.cerrar();
 		*/
 		

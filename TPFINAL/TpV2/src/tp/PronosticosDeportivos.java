@@ -3,18 +3,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Collections;
 import java.util.Comparator;
-/* Utilizar nombres de variables mas significativos.
- * 
- * 
- * 
- * */
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PronosticosDeportivos {
 	private ArrayList <Partido> partidos ;
 	private ArrayList <Participante> participantes;
-	
+	//constructor
 	public PronosticosDeportivos(String ruta) {
 		this.participantes = new ArrayList <Participante>();
 		this.partidos = new ArrayList <Partido>();
@@ -42,7 +37,9 @@ public class PronosticosDeportivos {
 		try {
 			File file = new File(ruta);
 			Scanner scanner = new Scanner(file);
+			//almacenar apuestas de los part
 			ArrayList<String> aux = new ArrayList<String>();
+			//leer lineas del archivo y agragar a aux
 			while(scanner.hasNextLine()) {
 				String linea = scanner.nextLine();
 				aux.add(linea);
@@ -69,10 +66,34 @@ public class PronosticosDeportivos {
 					// System.out.println(man.getNombre()+" +1 ");
 					System.out.println("Puntaje total al momento del participante "+man.getNombre()+" es de: "+man.getPuntaje()+" puntos.");
 				}
+
 			}
+
 			i++;
 		}
+		for (Participante man: participantes) {
+			if(puntoAdicional(man))
+				man.agregarPunto();
+				System.out.println("Punto extra por acertar todos los pronosticos");
+		}
+		for(Participante man : participantes){
+			System.out.println(man.toString());
+			}
 	}
+	
+	public boolean puntoAdicional(Participante p) {
+		boolean x=true;
+		
+		for(int i=0;i<partidos.size();i++) {
+			Partido par=partidos.get(i);
+			if(!p.getApuesta(i).equals(par.getResultado())) {
+				x=false;
+				break;
+			}
+		}
+		return x;
+	}
+	
 	 public void verResultados() {
 	      // Ordenar participantes por puntaje descendente
 	      Collections.sort(participantes, new Comparator<Participante>() {
